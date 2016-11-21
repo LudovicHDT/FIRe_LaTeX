@@ -1,4 +1,20 @@
-﻿\documentclass[12pt]{report}
+﻿%% Code source du rapport de 2e année
+%% Copyright (C) 2016  Ludovic Hondet
+
+%% This program is free software: you can redistribute it and/or modify
+%% it under the terms of the GNU General Public License as published by
+%% the Free Software Foundation, either version 3 of the License, or
+%% (at your option) any later version.
+
+%% This program is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%% GNU General Public License for more details.
+				  
+%% You should have received a copy of the GNU General Public License
+%% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+\documentclass[12pt]{report}
 \usepackage{fontspec}
 \usepackage{polyglossia}
 \usepackage[top=2.5cm, bottom=2.5cm, left=3.5cm, right=2cm]{geometry}
@@ -8,11 +24,9 @@
 \usepackage{amsmath}
 \usepackage{wrapfig}
 \usepackage[nottoc]{tocbibind}
-
 \usepackage{frbib}
 \usepackage{natbib}
-%\usepackage{csquotes}
-%\usepackage[backend=bibtex8, style=numeric, sorting=none]{biblatex}
+
 
 
 \setdefaultlanguage{french}
@@ -52,11 +66,25 @@
 \end{titlepage}
 
 \newpage
+\thispagestyle{empty}
 ~
 \newpage
 
+
+
+\maketitle
+
 \newpage
-\begin{center}
+\thispagestyle{empty}
+\setcounter{page}{0}
+\noindent Le fichier source de ce document est disponibles sur GitHub à l'adresse:\\
+\verb?https://github.com/LudovicHDT/FIRe_LaTeX?\\
+\noindent Les codes sources des scripts écrits pour ce rapport sont disponible à l'adresse:\\
+\verb?https://github.com/LudovicHDT/A7R?\\
+Si vous désirez des documents ou figures dont il est fait mention dans le rapport mais qui
+ne sont pas en annexes, vous pouvez vous adresser à l'auteur:\\
+\verb?ludohon@gmail.com?
+
 {\footnotesize
 \begin{verbatim}
 
@@ -76,62 +104,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \end{verbatim}
 }
-\end{center}
 \newpage
 
-\maketitle
 \tableofcontents
-
-%résumé français
-\begin{abstract}
-
-Dans le cadre d'une étude mené à l'INRA de Lusignan sur la caractérisation du
-rayonnement actif sur la photosynthèse dans un système de culture agro-forestier
-, il s'agit de montrer comment les arbres modifient le PAR en qualité comme en
-quantité. La parcelle
-agro-forestière sur laquelle l'étude fut menée permet d'étudier cette résilience pour un système pâturé. Le travail porte sur
-l'interaction arbres/lumière pour déterminer comment, sachant qu'il existe une différence de feuillage, celui-ci filtre la lumière en quantité
-et en qualité. Pour extraire de telles données il fallut mener 2 expérimentations. L'utilisation d'une machine expérimental, MARscope, fut
-nécessaire pour déterminer la quantité et la qualité de la lumière qui arrive au sol. Elle mesure la puissance
-surfacique reçue et traite cette information pour fournir d'autres données. La seconde expérimentation permit de déterminer
-la morphologie des houppiers avec huit photographies. La comparaison des 2 jeux de données obtenus confirment
-notre hypothèse: à savoir que la morphologie du feuillage a une influence sur la transmission de la lumière. Pour
-affirmer cela il fallu observer le minimum et la moyenne de $\zeta$. Le minimum nous indique l'ombrage maximum
-induit et la moyenne la densité du couvert. Le graphique final montre une différence de transmission prononcée
-entre espèce. À titre d'exemple les aulnes transmettent le plus de lumière mais c'est logique puisque leur
-volume de houppier et leur LAD est la plus bas.
-
-
-\end{abstract}
-
-
-%english abstract
-\begin{english}
-  \begin{abstract} 
-    My internship took place in the URP3F (Unit of multidisciplinary research on
-    meadows and forage plants) at the Oak's place but part of experiments were
-    conducted on a field of the Verrines's place. These two places
-    are located within the INRA on the municipality of Lusignan. The conductive
-    idea of those units is to show that diversified systems of
-    cultures are résilient to climate changes. The agro-forester field
-    on which the study was conducted allows to study this impact on a
-    grazed system. The work was about interaction between trees / light to determine
-    how, knowing that it exists a difference of foliage, a tree filters the
-    light in quantity and in quality. To extract such datas it was necessary to
-    lead 2 experiments. The use of an experimental system, MARscope, was
-    useful to determine the quantity and the quality of the light which
-    arrives at the ground. It measures the power per surface unit and handles
-    this information to supply other datas. The second experiment
-    allowed to determine the morphology of tree crowns with eight pictures. The
-    comparison of those sets of datas confirm our hypothesis that
-    the morphology of the foliage has an influence on the transmission of the light.
-    To assert it we were looking for the minimum and the average of $\zeta$.
-    The minimum indicates us the maximum shade and average the
-    density of the foliage. The final graph shows a difference of transmission
-    between species. As an exemple, \textit{A. cordata} let more light go through them than
-    the others. It's logical beacause volume of tree crown and LAD are lower.
-  \end{abstract}
-\end{english}
 
 
 \chapter*{Préface - remerciements}
@@ -166,35 +141,35 @@ temps. Enfin je remercie toute l'équipe pour son sens de l'humour.
 \chapter{Introduction}
 
 L'agroforesterie est une alternative aux monocultures massivement développées
-après-guerre. Celles-ci ont été développé dans l'optique de produire à
+après-guerre. Celles-ci ont été développées dans l'optique de produire à
 haut rendement, leur développement a nécessité la mise en place d'une
 industrie chimique pour produire des intrants et des produits phytosanitaires.
 Cependant, il est vite apparu que ces cultures à forts intrants posaient des
 problèmes de durabilité et environnementaux: pollution des cours d'eau par
-lixiviation des sols, tassement des sols, sensibilité aux maladies et aux
+lixiviation, tassement des sols, sensibilité aux maladies et aux
 ravageurs du fait de l'absence d'espèces protectrices, etc. À partir des années
 1970, la mise en place d'une durabilité, ou soutenabilité, des systèmes est devenue
 nécessaire pour assurer la pérennité de l'humanité, c'est dans ce contexte que des
 centres de recherche ont commencé à étudier l'agroforesterie.
 L'agroforesterie est l'association sur une même parcelle d'arbres et de cultures,
 elle n'entraîne pas une diminution du rendement, ni par concurrence entre espèces,
-ni par une contrainte de mécanisation \citep{AF_ref50}. Bien au contraire, elle
+ni par une contrainte de mécanisation~\citep{AF_ref50}. Bien au contraire, elle
 augmente le rendement en biomasse lorsque l'on associe des espèces
-complémentaires \citep{AF_ref51}.
+complémentaires~\citep{AF_ref51}.
 
 Ces associations par complémentarités s'inspirent des cultures traditionnelles
 et des mélangent présents dans la nature dont nous avons des connaissances
 empiriques, la recherche scientifique en agroforesterie se développe afin de
 transformer ces connaissances en connaissances scientifiques. À ce jour, nous
-savons qu'il existe de fortes interactions entre les arbes et les cultures dans
-les systèmes agroforestiers \citep{AF_ref48,AF_ref49,AF_ref47},
+savons qu'il existe de fortes interactions entre les arbres et les cultures dans
+les systèmes agroforestiers~\citep{AF_ref48,AF_ref49,AF_ref47},
 des interactions racinaires et des interactions pour la lumière. Dans un système
 agroforestier établi, c'est-à-dire avec des arbres de plus 5 ans et une strate
 herbacée, il n'y a pas de compétition pour les éléments minéraux du sol puisque
 les racines des arbres plongent bien plus profondément que celles des espèces
 herbacées, en revanche il existe bel et bien des interactions avec la lumière.
 Une couverture arbustive induit des modifications quantitatives et qualitatives
-de la lumière\citep{MAR_ref36} et plus spécifiquement du PAR
+de la lumière~\citep{MAR_ref36} et plus spécifiquement du PAR
 (Photosynthetically Active Radiation), ces modifications sont quantitatives à
 cause de la variation de l'irradiance et qualitatives à cause des variations du
 spectre lumineux. Cette modification de lumière qui atteint le sous-bois suppose
@@ -202,42 +177,42 @@ qu'il y a une variation continue de la lumière tout au long de sa traversée de
 houppiers, autrement dit qu'il existe un gradient de lumière le long du houppier
 \citep{MAR_ref31,MAR_ref35}. Ainsi les arbres cherchent à optimiser ce
 gradient et cette captation de la lumière pour leur propre croissance face à
-leurs voisins \citep{MAR_ref52} en faisant varier les caractères morphologiques de leur
+leurs voisins~\citep{MAR_ref52} en faisant varier les caractères morphologiques de leur
 houppier (hauteur, largeur, etc.). Cette optimisation de la captation de la lumière a été mise
-en évidence sur des péchers en leur imposant des tailles, houppiers en
-parallélogrammes, pyramides, etc. \citep{MAR_ref26}. En plus de ces recherches
+en évidence sur des pêchers en leur imposant des tailles, houppiers en
+parallélogrammes, pyramides, etc.~\citep{MAR_ref26}. En plus de ces recherches
 sur le PAR, il a été montré que les caractères morphologiques des houppiers, et
 l'architecture des plantes chlorophylliennes en général, sont influencés par des
-variations du MAR (Morphogenetically Active Radiation)\citep{MAR_ref35}, les réponses
+variations du MAR (Morphogenetically Active Radiation)~\citep{MAR_ref35}, les réponses
 morphogénétiques des plantes sont induites par des photorécepteurs qui capte le flux
 photonique UVA-bleu entre 350 et 500nm et par des photorécepteurs très particuliers: les
-phytochromes. Les phytochromes existes sous deux formes intercobvertibles, une
+phytochromes. Les phytochromes existent sous deux formes inconvertibles, une
 forme Pr qui présente un pic d'absorption à 660nm et une forme Pfr qui présente
-un pic à 730nm, la fréquence de réversabilité de ces 2 formes dépend directement
+un pic à 730nm, la fréquence de réversibilité de ces 2 formes dépend directement
 des rapports de ses longueurs d'onde que l'on appelle $\zeta$.
 
 En parallèle, on a découvert que les herbacées sont directement influencés, en
-terme de morphogénèse, par la lumière reçue \citep{MAR_ref16}. En effet, $\zeta$,
+terme de morphogenèse, par la lumière reçue~\citep{MAR_ref16}. En effet, $\zeta$,
 le rapport rouge sur infrarouge (R:FR) a une grande influence sur la vitesse de
 croissance du fétuque (\textit{Festuca arundinacea}) alors que la lumière bleue
-à une influence sur la direction de croissance de la plante \citep{BioVeg_ref43}.\\
+à une influence sur la direction de croissance de la plante~\citep{BioVeg_ref43}.\\
 
 L'effet global d'un houppier sur la lumière et les mécanismes d'absorption de
 celle-ci par les plantes sont connus, à l'inverse, dans le cas de
 l'agroforesterie, il semble que l'interaction entre les arbre et les herbes ont
-été peu étudié, plus précisément, peu d'études mettent en évidence qu'une
+été peu étudiés, plus précisément, peu d'études mettent en évidence qu'une
 différence des caractères morphologiques des houppiers peut avoir une influence sur
-la transmission de la lumière. Il est possible de formuler la
+la transmission de la lumière. Il est possible de formuler une
 problématique: Existe-t-il une différence de transmission de la lumière par les
 houppiers, compte tenu des différences morphologiques qui peuvent exister?\\
 
-Pour répondre à cette question nous avons déterminé les caractères
-morphologiques des houppiers et nous avons étudié les lumières qui frappent et
-qui traversent les houppiers, autrement dit les
+Pour répondre à cette question, les dimensions des caractères morphologiques des
+houppiers ont été étudiées ainsi que les lumières qui frappent et traversent les
+houppiers, autrement dit les
 lumières incidentes et transmises. Plusieurs méthodes ont été mises au
 point pour déterminer ces caractères. Une outil employé par des laboratoires de
 l'INRA est le digitaliseur magnétique, l'outil se compose d'une sphère
-intégrante, d'un boitier d'acquistion, d'un ordinateur et d'un pointeur. La
+intégrante, d'un boîtier d'acquisition, d'un ordinateur et d'un pointeur. La
 sphère produit un champ magnétique autour de l'objet à virtualiser, l'opérateur
 va pointer des points remarquables (extrémité d'une branche, emplacement d'une
 fourche, extrémités du houppier, etc.) pour les intégrer virtuellement dans un
@@ -251,31 +226,32 @@ sol \citep{MAR_ref32}. Pour cela, les opérateurs prennent des photos de l'ombre
 projetée au sol le long des rangées d'arbre. La dernière méthodes permet
 d'obtenir les caractères de la morphologie des houppiers et de connaître, par
 exemple, la surface foliaire théorique disponible pour intercepter la lumière.
-Elle permet de déterminer la heuteur de l'arbre, la hauteur du houppier, la
+Elle permet de déterminer la hauteur de l'arbre, la hauteur du houppier, la
 largeur du houppier selon les axes Est-Ouest et Nord-Sud, le volume apparent du
-houppier, la surface foliaire totale, la densité de la surface folaire (LAD)
+houppier, la surface foliaire totale, la densité de la surface foliaire (LAD)
 moyenne. Le principal outil de cette méthode est le logiciel Tree Analyzer
 \citep{MAR_ref24,MAR_ref25}. Il détermine les caractères morphologiques à
 partir de photographies des arbres.
 
 Les plantes exploitent le PAR pour faire la photosynthèse, le MAR a une forte
-influence sur la morphogénèse des plantes. C'est donc ces 2 rayonnements qui
+influence sur la morphogenèse des plantes. C'est donc ces 2 rayonnements qui
 ont été étudié pour répondre à la problématique. Le matériel qui a été utilisé,
 MARscope, a été développé par le laboratoire INRA Poitou-Charentes. MARscope
-capte l'énergie lumineuse par unité de surface, il calcul les flux photoniques
+capte l'irradiance, il calcul les flux photoniques
 du PAR (400 à 700nm), de l'UVA-bleu entre 350 et 500nm, du bleu élargi entre,
 du bleu strict entre, du vert entre, du rouge entre, du proche infrarouge entre,
 du rouge strict entre et de l'infrarouge strict entre. Ces flux photoniques
-lui permettent de calculer $\phi$, $\theta$, $\zeta$ et le rapport rouge sur
-infrarouge proche. Parmi toutes ces données mises à disposition nous avons eu
-besoin des flux photoniques PAR et UVA-bleu et de $\zeta$ pour répondre à notre
-problématique.
+lui permettent de calculer des valeurs d'équilibres chimiques spécifiques aux réactions
+de la photosynthèse, $\zeta$ et le rapport rouge sur
+infrarouge proche. Parmi toutes ces données mises à disposition, le flux
+photoniques global (PAR), le flux photonique UVA-bleu et $\zeta$ ont été
+exploités pour répondre à notre problématique.
 
 Nous avons répondu à notre problématique en deux étapes. Nous avons commencé par
 établir le protocole d'acquisition des images pour Tree Analyzer. Le protocole
 présenté dans l'article \citet{MAR_ref25} a été testé puis à été amélioré pour
 raccourcir le temps nécessaire à l'acquisition des images. Ensuite nous avons
-établi le protocole de mesure pour l'acquistion du PAR et du MAR des lumière
+établi le protocole de mesure pour l'acquisition du PAR et du MAR des lumière
 incidentes et transmises. Le même ordre a été suivi pour présenter et analyser
 les résultats. Nous avons en premier lieu analysé les résultats des relations
 allométriques et de Tree Analyzer, puis nous avons présenté les analyses issues
@@ -284,44 +260,23 @@ en vis à vis pour pouvoir établir des graphiques qui nous ont permis de répon
 à notre problématique.
 
 
-
-\chapter{Objectifs}
-
-Le site de Lusignan fait des recherches sur la durabilité des prairies dans un contexte de changement climatique. L'INRA veut
-aussi introduire la possibilité d'une conduite d'élevage économique. On suppose déjà que la diversification d'un milieu rend
-celui-ci plus résilient aux changements climatiques. Pour autant il existe peu d'études qui quantifient cette résilience. C'est
-l'objectif global du centre INRA Poitou-Charentes. Dans cette optique de diversification, les agents du site des Verrines ont
-envisagé de diversifier les prairies en introduisant des arbres. Mon travail s'inscrit dans cet objectif de diversification afin
-de renforcer la durabilité des prairies. L'URP3F fait beaucoup d'étude sur le rayonnement actif sur la morphogenèse. Comme je l'ai
-dit précédemment les plantes réagissent aux variations de lumière et de longueurs d'ondes, or il est évident que la
-composition spectrale de la lumière qui traverse un couvert arbustif en est grandement modifiée. Mes objectifs sont donc, d'une
-part, de caractériser les houppiers des arbres afin d'évaluer la lumière intercepté, d'autre part d'analyser la quantité et la composition spectrale des lumières
-incidente (qui arrive sur l'arbre) et transmise (qui a traversé l'arbre). Le premier objectif nécessite la prise en main
-d'un logiciel spécialement conçu à cet effet qui va déduire le volume et la surface foliaire du houppier à l'aide de photographies.
-Le second objectif nécessite l'utilisation d'une machine expérimentale qui
-relèvera toutes les données de rayonnement nécessaires à l'étude. Les résultats
-combinés de ces 2 objectifs auront un double usage pour l'équipe d'écophysiologie.
-Ils serviront de base pour des études supplémentaires sur la durabilité des prairies
-et pourront être utilisées pour d'autres sujets de recherche des sites des
-Verrines et du Chêne.
-
 \chapter{Matériel et méthodes}
 
 \section{Parcelle et matériel biologique}
 
 
 L'étude a été conduite sur une parcelle agroforestière entre le 6 juillet et le
-29 août 2016, elle est constituée de chênes verts (\textit{Quercus ilex}), de frêne commun
-(\textit{Fraxinus excelsior}), de mûrier blanc (\textit{Morus alba}),
-d'orme Lutèce (\textit{Ulmus minor}) et d'aulne corse
+29 août 2016. Elle est constituée de chênes verts (\textit{Quercus ilex}), de frênes communs
+(\textit{Fraxinus excelsior}), de mûriers blancs (\textit{Morus alba}),
+d'ormes Lutèce (\textit{Ulmus minor}) et d'aulnes corses
 (\textit{Alnus cordata}). Elle est destinée au pâturage par des vaches. Seules 3
 espèces ont été étudiées parmi les cinq
 présentes, le \textit{F. excelsior} pour ses feuilles composées,
 l'\textit{A. cordata} pour ses feuilles simples et le \textit{M. alba} pour ses
 feuilles simples mais pourtant si particulières géométriquement. Ces 3 espèces
-et l'\textit{U. minor} seront conduits en têtard afin d'être disponible en			%préciser l'histoire des conduire
-tant que pâturage pour le bétail. Le \textit{Q. ilex} sera également conduit			%en tếtard, rapport avec l'expérience
-en têtard mais à 3m, au lieu de 2m pour les autres arbres, cet arbre sempervirens
+et l'\textit{U. minor} seront conduites en têtard afin d'être disponibles en
+tant que pâturage pour le bétail. Le \textit{Q. ilex} sera également conduit
+en têtard mais à 3m, au lieu de 2m pour les autres arbres, cet arbre sempervirent
 fournira un abri naturel au bétail été comme hiver. La futur conduite en têtard
 n'aura aucun effet sur les résultats de l'expérience qui a été menée.
 
@@ -330,7 +285,7 @@ n'aura aucun effet sur les résultats de l'expérience qui a été menée.
   \def\svgwidth{\linewidth}
   \input{plan_M2.pdf_tex}
   \caption{Schéma de la parcelle agroforestière étudiée sur laquelle sont
-  menées les expérimentations (orientation avec le Nord en haut)\label{fig:parcelle}}
+  menées les expérimentations\label{fig:parcelle}}
 \end{figure}
 
 Sur la parcelle (voir figure~\ref{fig:parcelle}) l'inter-rang est de 20m et chaque arbre est
@@ -341,17 +296,17 @@ espacé de 3m au sein de chaque rang.
 \section{Estimation des caractères morphologiques}
 
 
-\subsection{Estimation des caractères morphologique d'un pied de luzerne en tant qu'expérience témoin}
+\subsection{Estimation des caractères morphologiques d'un pied de luzerne en tant qu'expérience témoin}
 
-Nous nous sommes inspiré du protocole des prises de vues présenté par les
-concepteurs de Tree Analyzer \cite{MAR_ref24}\cite{MAR_25} pour tester notre
+Nous nous sommes inspirés du protocole des prises de vues présenté par les
+concepteurs de Tree Analyzer \citep{MAR_ref24, MAR_ref25} pour tester notre
 propre protocole. Celui-ci a été mené sur un pied de luzerne. Pour 
 obtenir les caractères morphologiques des houppiers qui ont été utiles,
 c'est-à-dire hauteur, diamètre Est-Ouest et Nord-Sud, volume, surface foliaire
 totale, densité de surface foliaire (LAD) et l'indice foliaire (LAI), le
 logiciel, Tree Analyzer, a besoin de 8 prises de vue. Ces clichés sont
 pris tout autour du sujet par tranche de 45°. Dans le
-cas de la luzerne (figure~\ref{fig:luzerne}) nous avons fait tourner le pot au
+cas de la luzerne (figure~\ref{fig:luzerne}) j'ai fait tourner le pot au
 lieu de déplacer le montage. Il a fallu relever pour chaque photographie la
 hauteur,l'angle de l'appareil photo et la distance de l'appareil au sujet. Des
 paramètres supplémentaires, tels que l'inclinaison des feuilles et la surface
@@ -359,12 +314,12 @@ foliaire moyenne, directement mesurés sur le plan de luzerne, ont été
 nécessaires en entrées pour calculer les caractéristiques morphologiques (voir appendice~\ref{App:appxA}). 
 Un traitement d'image a été nécessaire pour 
 utiliser les photographies dans le logiciel, celui-ci ne savait gérer que des
-images en noir et blanc au format .bmp. Pour traiter nos images nous avons 
-utilisé ImageJ\cite{ImageJ_ref39}, c'est pour cela qu'un drap rouge(figure~\ref{fig:luzerne})
+images en noir et blanc au format .bmp. Pour traiter les images j'ai 
+utilisé ImageJ\cite{ImageJ_ref39}, c'est pour cela qu'un drap rouge (figure~\ref{fig:luzerne})
 est étendu en guise de fond: pour faciliter le traitement d'image par une
 différenciation du sujet avec le fond.
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=140mm]{bozo.jpg}
   \caption{Photographie du montage des prises de vues de la luzerne\label{fig:luzerne}}
@@ -373,7 +328,7 @@ différenciation du sujet avec le fond.
 L'autre intérêt du pied de luzerne était qu'il a été facile, de part sa taille, de confronter deux
 méthodes de mesure pour déterminer la surface foliaire totale. La deuxième
 méthode se base sur un comptage et une mesure des surfaces des feuilles à l'aide
-de scans. Le programme Mesure de surface de feuilles v2.py\cite{Python_ref40}
+de scans. Le programme Mesure de surface de feuilles v2.py\citep{Python_ref40}
 a permis de mesurer la surface foliaire au pixel près des scans.
 
 
@@ -381,9 +336,9 @@ a permis de mesurer la surface foliaire au pixel près des scans.
 
 Des relations allométriques ont été créés pour mesurer la surface foliaire par
 une autre méthode que par Tree Analyzer. Ce logiciel est un outil prototypique,
-sa fiabilité n'est donc pas avérée et nous avons donc dû nous assurer que ses
-résultats soient suffisemment exactes pour être analysés. Nous avons procéder à
-un échantillonage de feuilles et de branches qui nous ont permis d'établir des relations
+sa fiabilité n'est donc pas avérée et il a donc fallu s'assurer que ses
+résultats soient suffisamment exactes pour être analysés. J'ai procéder à
+un échantillonnage de feuilles et de branches qui a permis d'établir des relations
 allométriques: relation entre surface d'une feuille et longueur de la nervure
 principale, relation entre longueur d'un axe (branche) et nombre de feuilles sur
 cet axe. Ces relations avaient plusieurs fonctions: elles
@@ -398,29 +353,29 @@ folioles chez \textit{F. excelsior}). Pour cela un échantillon de 9 feuilles a
 Toutes ces feuilles ont été scannées puis analysées à l'aide d'un script développé
 pour l'expérience pour déterminer la surface de chacune. Dans un deuxième temps
 la longueur du limbe de chaque feuille a été mesurée. Après avoir enregistrées
-toutes nos valeurs nous avons tracé notre première relation allométrique.
+toutes les valeurs j'ai tracé la première relation allométrique.
 
 La seconde relation allométrique a été construite de la même manière. Celle-ci relie
 la longueur d'un axe avec le nombre de feuilles sur cet axe. Des échantillons d'une
 vingtaine de branches ont été prélevés pour chacune des 3 espèces. Grâce aux points
-que nous avons rentré nous avons tracé notre seconde relation allométrique.
+que nous avons rentré nous j'ai tracé la seconde relation allométrique.
 
 \subsection{Détermination des caractères morphologiques}
 
-Après avoir établi les relations allométriques qui nous ont permis de contrôler
-que Tree Analyzer donne des résultats fiables, nous avons adapté la méthode
-d'acquistion d'images. Ce protocole est le même que pour le pied de luzerne à la différence que le ciel
-contraste suffisamment avec les houppiers des arbres lorsque l'on seuille, il
-n'est donc pas nécessaire de couvrir tout le houppier mais uniquement la partie
-basse pour qu'il se détache du fond vert et de la prairie en dessous.
-De plus nous avons utilisé un autre script pour automatiser une partie
-du traitement (voir appendice~\ref{App:appxB}). L'utilisation
+Après avoir établi les relations allométriques qui ont permis de vérifier la
+fiabilité des résultats de Tree Analyzer sur le pied de luzerne, nous avons adapté le protocole
+d'acquisition à des arbres. Ce protocole était le même que pour le pied de luzerne à la différence que le ciel
+contrastait suffisamment avec les houppiers des arbres lorsque je seuillais, il
+n'était donc pas nécessaire de couvrir tout le houppier mais uniquement la partie
+basse pour qu'elle se détache du fond vert et de la prairie en dessous.
+De plus d'autres scripts ont été utilisés pour automatiser une partie
+du traitement. L'utilisation
 d'un drap rouge pour la moitié basse du houppier, au lieu d'étendre le drap sur
-toute la hauteur de la plante (voir figure~\ref{luzerne}), permet d'alléger
+toute la hauteur de la plante (voir figure~\ref{fig:luzerne}), a permis d'alléger
 la structure qui supporte le drap rouge, donc de gagner
-du temps lors des prises de vues. Par cette méthode, le post-traitement est un
-peu plus long mais on en gagne avec un script d'automatisation, globalement, la
-combinaison des méthodes raccourci le temps nécessaire à l'acquisition et au
+du temps lors des prises de vues. Par cette méthode, le post-traitement était un
+peu plus long mais on en gagnait avec un script d'automatisation, globalement, la
+combinaison des méthodes a raccourci le temps nécessaire à l'acquisition et au
 traitement des images.
 
 \begin{figure}
@@ -430,22 +385,21 @@ traitement des images.
   \caption{Photographie du montage de prises de vues pour un \textit{F. excelsior}\label{fig:montage_finale}}
 \end{figure}
 
-\section{Étude des lumières incidente et transmise}
+\section{Étude des lumières incidentes et transmises}
 
 \subsection{Choix du matériel et contraintes liées}
 
-% représentation d'un petit schéma représentant l'emplacement des capteurs
 
 La machine utilisée pour l'analyse des lumières incidentes et transmises, MARscope,
-est un prototype. Elle permet, grâce à une interface et son logiciel
-de traitement, de quantifier et de qualifier la lumière qui frappe les capteurs
-à partir de la puissance surfacique reçue. À partir de cette mesure, la machine est capable de
-calculer les flux photoniques qui permettent de répondre à notre problématique:
+est un prototype. Elle permettait, grâce à une interface et son logiciel
+de traitement, de quantifier et de qualifier la lumière qui frappait les capteurs
+à partir de l'irradiance reçue. Grâce à cette mesure, la machine était capable de
+calculer les flux photoniques qui ont permis de répondre à notre problématique:
 $\zeta$ (calculé à partir de 2 flux photoniques), le flux photonique
-global et le flux photonique UVA-bleu. Le matériel informatique est dans un caisson sur roues
+global et le flux photonique UVA-bleu. Le matériel informatique était dans un caisson sur roues
 (voir figure~\ref{fig:MARscope}).
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=140mm]{MARscope.JPG}
   \caption{Photographie du MARscope lors de l'étalonnage\label{fig:MARscope}}
@@ -453,29 +407,23 @@ global et le flux photonique UVA-bleu. Le matériel informatique est dans un cai
 
 7 capteurs cosinus, 6 pour la lumière transmise et un pour la lumière incidente,
 étaient reliés au MARscope via des fibres optiques. Ils permettaient de capter la
-lumière puis la pndéraient par l'angle d'incidence
-des rayons qui frappaient. La valeur de puissance surfacique restait inchangée
+lumière puis la pondéraient par l'angle d'incidence
+des rayons. La valeur d'irradiance restait inchangée
 lorsque le rayon frappait orthogonalement, à l'inverse, la valeur pondérée du rayon
 diminuait au fur et à mesure que l'angle par rapport à la verticale augmentait. La
 fonction qui liait la pondération et l'angle d'incidence était une fonction
 cosinus. Cette intégration du rayonnement
 impliquait que les capteurs soient tous d'aplomb sinon chacun d'eux
-n'intégreraient pas le même signal et nos mesures seraient faussées.
+n'intégreraient pas le même signal et les mesures seraient faussées.
 
 
 \subsection{Placement des capteurs et traitement de l'information}
 
-% intéressant trop vague, trouver des synonymes
-% MARscope mesure une puissance surfacique et calcul les flux photoniques pour chacune
-% éliminer les 'tout'
-
-% partie trop longue; faire plus de paragraphe
-% flux d'UVA bleu
 
 L'objectif principal de l'expérimentation était de quantifier et de qualifier les
 modifications que la lumière subissait lorsqu'elle traverse un houppier, cela
 nécessitait donc de mettre les capteurs à l'ombre. Par définition les capteurs cosinus
-intégraient la valeur réelle des rayons orthogonaux à leur surface et pondèraient
+intègrent la valeur réelle des rayons orthogonaux à leur surface et pondèrent
 les rayons rasants, donc les capteurs ont dû être placés de
 telle sorte qu'ils soient à l'ombre lorsque le soleil était au plus haut dans le
 ciel, ceci nous a amené à placer les capteurs à l'ombre des arbres à 12h UTC,
@@ -501,22 +449,22 @@ Pythagore:
     a = \frac{o}{\tan(\alpha)}
 \]
 Connaissant l'angle d'élévation du soleil à 14h ($\alpha$) et la hauteur du
-point le plus dense du houppier (o), il a été possible d'en déduire à quelle
-distance (a) il a fallu mettre chacun des capteurs (voir figure~\ref{fig:capteur}).
+point le plus dense du houppier (\textit{o}), il a été possible d'en déduire à quelle
+distance (\textit{a}) il a fallu mettre chacun des capteurs (voir figure~\ref{fig:capteur}).
 
 L'analyse des données a commencé immédiatement après avoir démarré
 l'acquisition des lumières incidentes et résultantes.
-Des scripts R\citep{R_ref38} (voir appendice~\ref{App:appxC}) ont été écrits pour
+Des scripts R~\citep{R_ref38} (voir appendice~\ref{App:appxB}) ont été écrits pour
 analyser les données utiles parmi la masse mis à disposition par le
-MARscope, 3 flux photoniques nous ont particulièrement intéressé: $\zeta$, le flux
+MARscope, 3 flux photoniques ont été particulièrement intéressants: $\zeta$, le flux
 photonique global et le flux photonique UVA-bleu. $\zeta$, la variable qui
-permettait aux plantes de déterminer si elles étaient à l'ombre, est le rapport de
+permet aux plantes de déterminer si elles sont à l'ombre, est le rapport de
 la lumière rouge sur l'infrarouge proche (R:FR), elle
 induit une accélération de la croissance en hauteur des plantes, autrement dit
-une élongation de l'entre-noeud. Ce rapport était émis par le rayonnement
+une élongation de l'entre-n\oe{}ud. Ce rapport était émis par le rayonnement
 solaire mais aussi par réflexion de la lumière sur les plantes environnantes, il
 indiquait donc à la plante si elle était en compétition. La deuxième variable qui
-qui avait une influence sur la morphogénèse, était le flux photonique UVA-bleu,
+qui a une influence sur la morphogenèse, est le flux photonique UVA-bleu,
 compris entre 350 et 500nm. La lumière de cette longueur d'onde a 2 effets sur
 la plante, elle est absorbé par la chlorophylle dans le processus de la
 photosynthèse et indique dans quelle
@@ -532,27 +480,25 @@ utilisable par la plante pour la photosynthèse, elle correspond donc au PAR
 
 \chapter{Résultats et analyse}
 
-% être plus direct
-% faire une conclusion par graphique
 
 \section{Relations allométriques}
 
-\subsection{Relations allométriques entre surface et longeur des feuilles}
+\subsection{Relations allométriques entre surface et longueur des feuilles}
 
 Les résultats des relations allométriques ont pu être interprétés avant
 le traitement complet des données de MARscope. La figure~\ref{fig:feuilles}
-représente la relation allométrique entre la surface et la longueur des
+représente les relations allométriques entre la surface et la longueur des
 feuilles. La régression qui a été appliquée était une
 fonction de puissance (définition d'une relation d'allométrie selon Julian
 Huxley, 1936). Chaque espèce a sa propre relation allométrique avec des
-coefficients de corrélation ne descendant pas en dessous de 0.93, \textit{
+coefficients de détermination ne descendant pas en dessous de 0.93, \textit{
 F. excelsior} étant l'espèce qui a le plus petit coefficient. Tout d'abord, il
-est important de remarquer que nous avons échantilloner des folioles de \textit{
-F. excelsior} et non des feuilles, nous avons fait le même échantillonnage pour
+est important de remarquer que des folioles de \textit{F. excelsior} ont été
+échantillonnés et non des feuilles, nous avons fait le même échantillonnage pour
 les feuilles mais leur courbe de régression écrasait les autres courbes.
 
 Visuellement, lorsqu'une courbe est au dessus d'une autre, cela signifie que la
-surface de la feuille sera plus élévé pour une même longueur de limbe. Dans le
+surface de la feuille sera plus élevé pour une même longueur de limbe. Dans le
 cas des feuilles de frêne, qui n'ont pas été représentées, cela signifie
 qu'elles sont capables d'optimiser leur surface pour une même longueur de
 pétiole.
@@ -560,21 +506,21 @@ pétiole.
 \subsection{Relations allométriques entre longueur des axes et nombre de
 feuilles par axe}
 
-La figure~\ref{fig:branches} représente la relations allométriques 
-entre la longueur des axes et le nombre de feuilles par axe, nous avons
-également appliqué la définition de relation allométrique pour établir nos
+La figure~\ref{fig:branches} représente les relations allométriques 
+entre la longueur des axes et le nombre de feuilles par axe, j'ai appliqué la
+définition de relation allométrique pour établir les
 équations. De manière générale les coefficients de détermination sont un peu
 moins bon puisqu'on est entre 0.93 pour \textit{F. excelsior} et 0.72 pour
 \textit{A. cordata}, ces plus faibles valeurs s'expliquent par notre méthode
-d'échantillonage. En effet, nous avons relevé la présence réelle de feuilles et
-non la présence théorique, des feuilles ont pu tomber car elles ont été abimées
+d'échantillonnage. En effet, nous avons relevé la présence réelle de feuilles et
+non la présence théorique, des feuilles ont pu tomber car elles ont été abîmées
 par exemple.
 
 De manière générale, lorsqu'une courbe est au dessus d'une autre, cela signifie
-, pour l'espèce considérée, qu'il y aura plus de feuilles sur l'axe pour cet
+qu'il y aura plus de feuilles sur l'axe pour une
 espèce comparé aux courbes des autres espèces qui sont en dessous. Ces
 différences du nombre de feuilles peuvent s'expliquer par la longueur de l'entre
-n$\oe$ud ou l'arrangement des feuilles sur l'axe.
+n\oe{}ud ou l'arrangement des feuilles sur l'axe.
 
 \begin{figure}
     \centering
@@ -593,13 +539,12 @@ n$\oe$ud ou l'arrangement des feuilles sur l'axe.
 
 Les scripts qui ont été écrits ont permis de tracer 2 types de graphiques: des
 nuages de points et des boîtes à moustaches. Le premier groupe de graphiques
-(voir figure~\ref{fig:flux}) représente la variation de nos 3 variables, le flux
-photonique global, le flux d' UVA-bleu et $\zeta$ au cours du temps pour les capteurs
-1, 3 et 4, un frêne, un aulne et un mûrier. Comme il a été expliqué précédemment,
-nous avons utilisé $\zeta$ pour déterminer à quel moment les capteurs sont à
-l'ombre, il a été décidé de prendre 0.85 comme seuil d'ombrage. Les boîtes à
-moustaches ont été obtenus en ne conservant que les valeurs ne dépassant pas
-0.85.
+(voir figure~\ref{fig:flux}) représente la variation de nos 3 flux, le flux
+photonique global, le flux d'UVA-bleu et $\zeta$ au cours du temps pour les capteurs
+1, 3 et 4, un frêne, un aulne et un mûrier. Nous avons utilisé $\zeta$ pour
+déterminer à quel moment les capteurs sont à l'ombre, il a été décidé de prendre
+0.85 comme seuil d'ombrage. Les boîtes à moustaches ont été obtenues en ne
+conservant que les valeurs inférieurs à 0.85.
 
 Sur les 3 graphiques de la figure~\ref{fig:flux}, on voit que les capteurs sont
 passés à l'ombre vers 11h30. À l'inverse, l'heure de sortie de la zone d'ombre
@@ -607,44 +552,42 @@ semble dépendre des arbres, le frêne se caractérisait par un houppier plus
 étroit, un volume foliaire plus faible et un LAD plus faible que l'aulne et le
 mûrier, il était donc logique que le capteur 1 soit moins à l'ombre que les
 capteurs 3 et 4. On peut remarquer sur nos 3 graphiques que les valeurs des 3
-variables sont plus faibles avant le passage de l'ombre, cela s'explique par des
+flux sont plus faibles avant le passage de l'ombre, cela s'explique par des
 passages nuageux. L'idéal aurait été d'avoir un ciel bleu du matin au soir mais
-malheuresement le cas ne s'est jamais présenté pendant toute notre campagne de
+malheureusement le cas ne c'est jamais présenté pendant toute notre campagne de
 mesures.
 
-Les boîtes à moustaches (voir figure~\ref{fig:}) ont pour représentation de la
+Les boîtes à moustaches (voir figure~\ref{fig:boxplots}) ont pour représentation de la
 moyenne des cercles rouges, elles ont été calculées avec les points qui sont
-sous le seuil de 0.85, les extrémitées représentent les points extrèmes. $\zeta$
+sous le seuil de 0.85, les extrémités représentent les points extrêmes. $\zeta$
 minimum représente l'intensité d'ombrage maximal qu'un arbre peut induire, alors
 que la moyenne est un indicateur de la proportion de trouées dans le feuillage,
 autrement dit c'est un indicateur non quantifié de la densité du feuillage.
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \begin{tiny}
     \input{rapport_plots.tex}
   \end{tiny}
-  \caption{Représentation visuelle de 3 composantes de la lumière transmise\label{fig:bozo}}
+  \caption{Représentation visuelle de 3 flux de la lumière transmise\label{fig:flux}}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h]
   \centering
-  \includegraphics[width=170mm]{rapport_plots.png}
-  \caption{Représentation visuelle de 3 composantes de la lumière transmise\label{fig:flux}}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=160mm]{rapport_barplots.png}
-  \caption{Représentation sous forme d'histogramme de quelques composantes de la lumière transmise\label{fig:barplots}}
+  \begin{small}
+    \input{rapport_barplots.tex}
+  \end{small}
+  \caption{Distribution des flux photoniques; la moyenne est représentée par un
+    cercle rouge\label{fig:boxplots}}
 \end{figure}
 
 
-\subsection{Une très forte influence de la morphologie du houppier sur la lumière transmise}
+\subsection{Une très forte variation infraspécifique de la transmission selon la
+  morphologie des houppiers }
 
 Les mesures des caractères morphologiques et des lumières incidentes et
-transmises nous ont fourni des données que nous avons combiné, on a ainsi obtenu
-2 graphiques. Le premier graphique (voir figure~\ref{fig:}) représente
+transmises nous ont fourni des données qui ont été combinées, j'ai ainsi obtenu
+2 graphiques. Le premier graphique (voir figure~\ref{fig:zeta_min}) représente
 l'évolution de l'intensité de l'ombre en fonction de la surface foliaire totale.
 On remarque, pour les 3 espèces, que plus cette surface augmente, plus
 l'intensité de l'ombrage augmente. De plus, les coefficients de pente des 3
@@ -654,21 +597,28 @@ espèces sont très proches puisqu'il y a une différence de 25\% entre le
 de l'ombrage dépende d'un facteur initial et de la surface foliaire totale
 quelque soit l'espèce.
 
-Le second graphique (voir figure~\ref{fig:}) représente l'évolution de $\zeta$
+Le second graphique (voir figure~\ref{fig:zeta_moyen}) représente l'évolution de $\zeta$
 moyen en fonction de du LAD. $\zeta$ moyen est un indicateur de la densité du
 feuillage, le LAD est une densité, donc au sein de chaque espèce, plus le LAD
-est haut et plus $\zeta$ moyen est haut; autrement dit une augmentationde densité
+est haut et plus $\zeta$ moyen est haut; autrement dit une augmentation de densité
 induit une diminution des trouées, donc plus d'ombre. Le raisonnement se vérifie sur la
-figure~\ref{fig:} pour le frêne et l'aulne mais pas pour le mûrier. Deux
-hypothèses peuvent expliquer cela, soit Tree Analazyer sous-estime les
+figure~\ref{fig:zeta_moyen} pour le frêne et l'aulne mais pas pour le mûrier. Deux
+hypothèses peuvent expliquer cela, soit Tree Analyzer sous-estime les
 surfaces foliaires puisque les feuilles au centre du houppier ne sont pas
 visibles, soit la taille d'échantillonnage est trop faible.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=180mm]{zeta_min.png}
+  \caption{Évolution de l'intensité de l'ombrage en fonction de la surface
+    foliaire pour chacune des espèces\label{fig:zeta_min}}
+\end{figure}
 
 \begin{figure}
   \centering
-  \includegraphics[width=160mm]{synthèse.png}
-  \caption{Histogramme synthétique de la relation entre les caractères morphologiques et $\zeta$ minimum\label{fig:synthèse}}
+  \includegraphics[width=180mm]{zeta_moyen.png}
+  \caption{Évolution de la proportion de trouées en fonction du LAD pour chacune
+    des espèces\label{fig:zeta_moyen}}
 \end{figure}
 
 
@@ -685,19 +635,19 @@ L'analyse des échantillons de feuilles et de branches ont montré qu'il existe
 des relations allométriques entre surface et longueur d'une feuille et entre
 longueur d'un axe et nombre de feuilles sur l'axe. L'objectif de ces relations
 était de calculer la surface foliaire d'un arbre pour la comparer avec la
-surface foliaire calculé par Tree Analyzer. Il s'est avéré que les 2 méthodes de
+surface foliaire calculée par Tree Analyzer. Il s'est avéré que les 2 méthodes de
 mesure ne donnaient pas les mêmes résultats, il y a dans tous les cas au moins
-3m$^{2}$ et pafois même jusqu'à 7m$^{2}$ de différence, autrement dit le double
+3m$^{2}$ et parfois même jusqu'à 7m$^{2}$ de différence, autrement dit le double
 du résultat de Tree Analyzer. La première hypothèse est que Tree Analyzer sous
-estime trop la surface foliaire puisqu'il utlise des clichés photographiques, il
+estime trop la surface foliaire puisqu'il utilise des clichés photographiques, il
 ne voit donc pas les feuilles au c$\oe$ur de l'arbre qui peuvent être cachées
 par les feuilles périphériques du houppier. Il existe certes une incertitude de
 mesure mais les tests menés par Phattaralerphong et Sinoquet (2005) ont montré
 que cette incertitude est négligeable, les coefficient de détermination sont
 égaux à 0.99 en moyenne lorsqu'ils ont fait leurs essais avec 8 photographies.
 
-La deuxième hypothèse est que les relations allométriques sont fausses. Il est
-difficile de valider cette hypothèse. La définition d'une relation allométrique
+La deuxième hypothèse est que les relations allométriques sont fausses. La
+définition d'une relation allométrique
 a été respectée, les coefficients de détermination sont excellents pour ce qui
 est des relations entre longueur et surface du limbe puisqu'on est aux alentours
 de 0.94 et sont bons pour ce qui est des relations entre longueur de l'axe et
@@ -711,17 +661,17 @@ organes des arbres. Ces éléments montrent que les relations allométriques
 allométriques sont correctes.
 
 La troisième hypothèse est que l'incertitude est issue d'un mauvais
-échantillonage. Les relations ont été établis en laboratoire à partir de
+échantillonnage. Les relations ont été établies en laboratoire à partir de
 prélèvements. Il était impossible de prélever la branche portant le bourgeon
 terminal car il ne fallait pas étêter les arbres. Il donc été impossible
 d'échantillonner toutes les catégories de branches. Ces branches portaient des
 feuilles souvent plus grande que les feuilles de la base, l'entre-n$\oe$ud était
 plus important que l'entre-n$\oe$ud entre les feuilles à la base du houppier.
-L'échantillonage était donc biaisé et ne rendait pas compte de la réalité.
+L'échantillonnage était donc biaisé et ne rendait pas compte de la réalité.
+L'erreur est donc dû à un mauvais échantillonnage.
 
 
-\section{La transmission de la limière par les houppiers, des mesures réussies
-malgré des complications}
+\section{La transmission de la lumière par les houppiers}
 
 L'étude des flux photoniques globaux (PAR), UVA-bleu et de $\zeta$ ont mis en
 évidence une forte influence d'un couvert arbustif sur la transmission de la
@@ -731,7 +681,7 @@ $\zeta$. Les résultats de ces expériences, qui ont des résultats du même ord
 de grandeur que ceux de ce rapport, montrent que le protocole expérimental
 mis en place c'est avéré fiable.
 
-Les mesures des flux photoniques n'ont pas été sans complications. Initialement,
+Les mesures des flux photoniques n'ont pas été sans complication. Initialement,
 il avait été prévu de faire des mesures pour un jour ensoleillé, un jour voilé
 et un jour complètement couvert afin de mettre une évidence de transmission de
 la lumière en fonction des conditions climatiques. L'idée initiale du protocole
@@ -743,7 +693,7 @@ peuvent avoir été perturbées par des insectes. L'herbe était haute, environ
 60~cm, et les capteurs étaient à 80~cm, il n'est pas à exclure que des insectes
 ont pu passer par dessus les capteurs au moment de l'acquisition. Ces
 perturbations peuvent expliquer l'existence de valeurs aberrantes mais elles ont
-pu être facilement éliminées.
+pu être éliminées facilement.
 
 
 \chapter{Conclusion et perspectives}
@@ -751,7 +701,7 @@ pu être facilement éliminées.
 Les recherches décrites dans ce rapport ont répondu favorablement à l'hypothèse
 qui avait été formulée sous forme de problématique: Existe-t-il une différence de
 transmission de la lumière par les houppiers, compte tenu des différences
-morphologiques qui peuvent exister?\\
+morphologiques qui peuvent exister?
 
 Les relations allométriques ont montré qu'il existe, au sein de chaque espèce,
 des relations dans un organe ou entre différents organes de l'arbre. La
@@ -766,7 +716,7 @@ Bien que les expériences présentées dans ce rapport répondent favorablement 
 la problématique, d'autres études peuvent venir renforcer la réponse ou peuvent
 étudier d'autres aspects de la relation entre un arbre et les herbes en dessous.
 Une étude statistique plus poussée permettrait de répondre à une question qui
-n'a pas pu être résolu avec les résultats: Qu'est-ce qui provoque la différence
+n'a pas pu être résolue avec les résultats: Qu'est-ce qui provoque la différence
 de transmission de la lumière entre les différentes espèces? Nous avons mis en
 évidence une différence de transmission de la lumière compte tenu des
 différences morphologiques au sein de chaque espèce, mais, les résultats des
@@ -774,7 +724,7 @@ expériences ne mettent pas en évidence les causes des différences de
 transmission entre espèces. Une première étude statistique permettrait de
 renforcer la réponse et mettrait en évidence si il existe une réelle différence
 de transmission entre les 3 espèces. Il faudrait pour cela appliquer les mêmes
-protocoles mais sur un plus grand nombre d'arbres.\\
+protocoles mais sur un plus grand nombre d'arbres.
 
 Nous avons pris le parti de faire des mesures d'irradiance ``ponctuelles''
 compte tenu des contraintes techniques imposées par les capteurs. Au lieu de
@@ -782,7 +732,7 @@ prendre des mesures sur une plage de temps restreinte, il aurait été possible 
 faire des mesures de l'ombre tout au long de la journée. Cette proposition
 de protocole a été avancée. Pour cela, il fallait placer les 6 capteurs sur un
 demi arc de cercle de manière à suivre la course du soleil. Ce protocole n'était
-pas enviseageble avec les capteurs qui ont été utilisés du fait que les capteurs
+pas envisageable avec les capteurs qui ont été utilisés du fait que les capteurs
 cosinus pondéraient les rayons rasants. La valeur des flux photoniques aurait
 été croissante jusqu'à midi, puis décroissante, indépendamment des conditions
 naturelles. Des capteurs directionnels auraient été nécessaires, avec ces
@@ -817,131 +767,68 @@ de l'ombrage induisent un microclimat favorable aux herbacés.
 
 \begin{figure}
   \centering
-  \includegraphics[width=160mm]{TA.png}
+  \includegraphics[width=160mm]{TA_simple.png}
   \caption{Fenêtre principal d'un set de photographies}
 \end{figure}
 
 
-\chapter{Code source du script Python}\label{App:appxB}
 
-
-Le script qui suit permet de diminuer la qualité de l'image pour que Tree Analyzer puisse
-traiter les images plus vite. Il permet aussi de convertir les images au format
-jpg, png ou tiff vers le format bitmap, le seul utilisable par Tree Analyzer. Ce
-script est sous licence GNU GPL.
-
-
-\begin{minted}{python}
-#!/usr/bin/python
-# -*- encoding: utf-8 -*-
-#    Copyright 2016 Gabriel Hondet
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
-import sys
-import argparse
-import numpy as np
-from PIL import Image
-
-
-def looponfiles():
-    """
-    Prend en paramètre les arguments passés en ligne de commande (fichiers à
-    traiter) et lance la fonction de traitement
-    """
-    imext = ["jpg", "tif", "png", "JPG", "TIF", "PNG"]
-    for filename in sys.argv[1:]:
-        if len(filename.split('.')) >= 2 and filename.split('.')[1] in imext:
-            process_im(filename)
-
-
-def process_im(filename):
-    """
-    Prend en paramètre une chaine de caractère: le nom du fichier à traiter
-    Redimensionne puis complète puis enregistre les images. Les images sont
-    complétées par des arrays (tobestacked) représeantant des bandes blanches
-    """
-    # NOTATION GRAPHIQUE (largeur, hauteur)
-    dim_req = (1920, 1280)
-    img_pil = Image.open(filename)
-    img_pil.thumbnail(dim_req)
-    img_pil_arr = np.array(img_pil)
-    # NOTATION MATRICIELLE: (ligne, colonne)
-    dim_req = (1280, 1920)
-    diff_dim = (abs(img_pil_arr.shape[0] - dim_req[0]),
-                abs(img_pil_arr.shape[1] - dim_req[1]))
-    # On complète
-    # Si largeur bonne
-    if diff_dim[0] == 0 and diff_dim[1] != 0:
-        tobestacked = 255*np.ones((dim_req[0], diff_dim[1], 3),
-                                  dtype="uint8")
-        img_pil_arr = np.hstack((img_pil_arr, tobestacked)).copy()
-    # Si hauteur bonne
-    elif diff_dim[1] == 0 and diff_dim[0] != 0:
-        tobestacked = 255*np.ones((diff_dim[0], dim_req[1], 3),
-                                  dtype="uint8")
-        img_pil_arr = np.vstack((img_pil_arr, tobestacked)).copy()
-    img_pil = Image.fromarray(img_pil_arr)
-    img_pil.save("{}.bmp".format(filename.split('.')[0]), "bmp")
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("filename", help="Nom des images à traiter", nargs='+')
-    parser.parse_args()
-    looponfiles()
-\end{minted}
-
-
-\chapter{Code source du script R}\label{App:appxC}
+\chapter{Code source du script qui a produit les graphiques}\label{App:appxB}
 
 \begin{minted}{r}
-#####Script de traitement de données pour le rapport#######
+####### Script d'analyse des données de MARscope #######
 
 
+## Part of the A7R project, this script was intended to produce figures
+## for report.
+## Copyright (C) 2016  Ludovic Hondet
 
-#Initialisation du script
-library(gplots)
+## This program is free software: you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation, either version 3 of the License, or
+## (at your option) any later version.
+
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+
+## You should have received a copy of the GNU General Public License
+## along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+# Initialisation du script
+library(tikzDevice)
 setwd("/media/win_shared/data_sync/Documents/INRA_PC/Data_MARscope/")
-fluxLum = read.table("Carac_Lusignan_2016-07-09_004.txt", header = TRUE,
-		     sep = ";", dec = ".")
+
+
+## Création des nuages de points
+fluxLum = read.table("Carac_Lusignan_2016-07-09_002.txt", header = TRUE,
+sep = ";", dec = ".")
 attach(fluxLum)
 
 
-##Graphiques
 
-
-#Sélection des données
-capteur_01 = subset(fluxLum, Id == 'a01')
-capteur_02 = subset(fluxLum, Id == 'a02')
+# Sélection des données
+capteur_01 = subset(fluxLum, Id == 'a01')    # Capteur n°1 + incident
+capteur_02 = subset(fluxLum, Id == 'a02')    # Capteur n°2 + incident
 capteur_03 = subset(fluxLum, Id == 'a03' & Ray == '2')
 capteur_04 = subset(fluxLum, Id == 'a04' & Ray == '2')
 capteur_05 = subset(fluxLum, Id == 'a05' & Ray == '2')
 capteur_06 = subset(fluxLum, Id == 'a06' & Ray == '2')
 
 
-#Tracer les graphiques
+# Tracer les graphiques
 
-
-svg("rapport_plots.svg", width = 17, height = 7, onefile = TRUE)
+tikz("rapport_plots.tex", width = 10, height = 4, onefile = TRUE,
+engine = "xetex")
 par(mfrow = c(1,3), oma = c(1,1,1,0), mar = c(5,5,5,1))
 
 
 HEADER = c("Flux_photons", "UVA_BLEU", "ZETA")
-TITRE = c("Flux phtonique transmis", "UVA bleu transmis", "ZETA transmis")
-LABELS = c("Flux photonique [400nm; 700nm] (µmol.m⁻².s⁻¹)",
-	   "UVA bleu [350nm; 500nm] (µmol.m⁻².s⁻¹)", "ZETA")
+TITRE = c("PAR transmis", "UVA-bleu transmis", "ZETA transmis")
+LABELS = c("PAR (µmol.m$^{-2}$.s$^{-1}$)", "Flux photonique UVA-bleu
+(µmol.m$^{-2}$.s$^{-1}$)", "ZETA")
 
 
 for(i in 1:3){
@@ -960,116 +847,83 @@ couleurs = c("black", "red", "green", "blue")
 legend(x = "topright", legend = bozo, fill = couleurs, bty !='n', bg = "white",
        cex = 1.5)
 }
-
 dev.off()
 
 
-##Barplots
+## Création des boxplots
 
+fluxLum = read.table("Carac_Lusignan_2016-07-09_004.txt", header = TRUE,
+sep = ";", dec = ".")
+attach(fluxLum)
 
-capteur_in = subset(fluxLum, Id == 'a01' & Ray == '1')
-capteur_01 = subset(fluxLum, Id == 'a01' & Ray == '2')
-capteur_02 = subset(fluxLum, Id == 'a02' & Ray == '2')
-capteur_03 = subset(fluxLum, Id == 'a03' & Ray == '2')
-capteur_04 = subset(fluxLum, Id == 'a04' & Ray == '2')
-capteur_05 = subset(fluxLum, Id == 'a05' & Ray == '2')
-capteur_06 = subset(fluxLum, Id == 'a06' & Ray == '2')
+TR = subset(fluxLum, Id=='a01'&Ray=='2' | Id=='a02'&Ray=='2' | Id=='a03'&Ray=='2'
+| Id=='a05'&Ray=='2' | Id=='a04'&Ray=='2' | Id=='a06' & Ray=='2')
+mean_in = c(1396.27,375.8148,1.113237)
+
+tikz("rapport_barplots.tex", width = 9, height = 3, onefile = TRUE,
+engine = "xetex")
+par(mfrow = c(1,3), oma = c(1,1,1,0), mar = c(5,5,5,1))
 
 
 HEADER = c("Flux_photons", "UVA_BLEU", "ZETA")
-TITRE = c("Flux photonique moyen transmis", "UVA bleu moyen transmis", "ZETA")
-LABELS = c("Flux photonique [400nm; 700nm] (µmol.m⁻².s⁻¹)",
-	   "UVA bleu [350nm; 500nm] (µmol.m⁻².s⁻¹)", "ZETA")
-SENSORS = list(capteur_in, capteur_01, capteur_02, capteur_03, capteur_05,
-	       capteur_04, capteur_06)
-k = c("a", "b", "c", "d", "e", "f", "g")
-minima = c("h", "i", "j", "l", "m", "n", "o")
-maxima = c("p", "q", "r", "s", "t", "u", "x")
+TITRE = c("PAR transmis", "UVA-bleu transmis", "ZETA transmis")
+LABELS = c("PAR (µmol.m$^{-2}$.s$^{-1}$)", "UVA-bleu (µmol.m$^{-2}$.s$^{-1}$)",
+"ZETA")
 
-
-svg("rapport_barplots.svg", width = 15, height = 10, onefile = TRUE)
-par(mfrow = c(2,2), oma = c(1,1,1,0), mar = c(5,5,5,1))
 
 for(i in 1:3){
-   for(j in 1:7){
-      k[j] = mean(SENSORS[[j]][,HEADER[i]])
-      minima[j] = min(SENSORS[[j]][,HEADER[i]])
-      maxima[j] = max(SENSORS[[j]][,HEADER[i]])
-   }
-  v = k[1]
-  k = k[-1]
-  minima = minima[-1]
-  maxima = maxima[-1]
-  barplot2(as.numeric(k), space = 0, add = FALSE, axes = TRUE, xpd = FALSE,
-	  plot.ci = TRUE, ci.l = as.numeric(minima), ci.u = as.numeric(maxima),
-	  col = "lightblue", main = TITRE[i], xlab = "Espèces",
-	  ylab = LABELS[i], cex.main = 2, cex.lab = 1.5, cex.axis = 1.5)
-  axis(1, at = seq(0.5, 5.5, 1), labels = c('F. excel', 'F. excel',
-						    'A. cor', 'A. cor',
-						    'M. alba', 'M. alba'))
-
-  legend(x = "topright", legend = round(as.numeric(v),2),
-	 title = "Valeur de l'incident", bty = "n")
+  boxplot(TR[,HEADER[i]]~Id, data = TR, range = 0, main = TITRE[i],
+  xlab = "Espèces", ylab = LABELS[i],
+  names = c("F","F","A","A","M","M"))
+  legend(x = "bottomleft", legend = mean_in[i], title = "Incident",
+  bty = "n")
+  means = aggregate(TR[,HEADER[i]]~Id, data = TR, mean)
+  means = as.list(means)
+  points(1:6, means$`TR[, HEADER[i]]`, col = "red")
 }
-
 dev.off()
 \end{minted}
 
-Le script ci dessus est le script qui nous permit de tracer les graphiques 
-présents dans ce rapport. Ce script est sous licence GNU GPL v3.
 
-
-%résumé français
 \begin{abstract}
-Mon stage se déroule à l'URP3F (Unité de Recherche Pluridisciplinaire Prairies
-et Plantes Fourragères) sur le site du Chêne mais sur une parcelle du site des Verrines. Ces deux sites se situent au sein de l'INRA
-sur la commune de Lusignan. L'idée conductrice des unités sur ces sites est de montrer
-que des systèmes de cultures diversifiés sont résilients aux changements climatiques. La parcelle
-agro-forestière sur laquelle l'étude fut menée permet d'étudier cette résilience pour un système pâturé. Le travail porte sur
-l'interaction arbres/lumière pour déterminer comment, sachant qu'il existe une différence de feuillage, celui-ci filtre la lumière en quantité
-et en qualité. Pour extraire de telles données il fallut mener 2 expérimentations. L'utilisation d'une machine expérimental, MARscope, fut
-nécessaire pour déterminer la quantité et la qualité de la lumière qui arrive au sol. Elle mesure la puissance
-surfacique reçue et traite cette information pour fournir d'autres données. La seconde expérimentation permit de déterminer
-la morphologie des houppiers avec huit photographies. La comparaison des 2 jeux de données obtenus confirment
-notre hypothèse: à savoir que la morphologie du feuillage a une influence sur la transmission de la lumière. Pour
-affirmer cela il fallu observer le minimum et la moyenne de $\zeta$. Le minimum nous indique l'ombrage maximum
-induit et la moyenne la densité du couvert. Le graphique final montre une différence de transmission prononcée
-entre espèce. À titre d'exemple les aulnes transmettent le plus de lumière mais c'est logique puisque leur
-volume de houppier et leur LAD est la plus basse.
+Dans le cadre d'une étude menée à l'INRA de Lusignan sur l'interaction entre les
+arbres et les herbacés dans un système agroforestier, il s'agit de montrer que
+la lumière tranmise par les arbres dépend des caractères morphologiques des
+houppiers. Cette étude s'inscrit dans le cadre de la recherche sur des systèmes
+de culture durable avec pour objectif de développer des systèmes durables et
+rentables pour les éleveurs et agriculteurs. La question qui ce pose est de
+savoir si il existe une différence de transmission de la lumière, compte tenu
+des différences morphologiques qui peuvent exister dans les houppiers. Pour cela,
+2 expériences ont été mises en place: mesure des caractères morphologiques des
+houppiers et mesure des lumières incidentes et résultantes. La première
+expérience a necessité un logiciel spécifique capable de déterminer les
+caractères morphologiques à partir de 8 photographies. La seconde expérience a
+necessité du matériel plus spécifique. Le système d'acquisition et de traitement
+était capable de calculer des flux photoniques dans différentes longueurs d'onde
+à partir des irradiances incidentes et transmises. Les résultats de ces 2
+expériences ont ensuite été concaténé pour mettre en évidence un lien entre
+morphologie des houppiers et transmission de la lumière. L'analyse des résultats
+a mis en avant un lien entre la morphologie des houppiers et la transmission de
+la lumière au sein de chacune des espèces.\\
 
+\noindent In the context of a study at INRA of Lusignan on the interaction between trees
+and meadows in an agroforestry system, the goal is to show that transmitted
+light by trees depends on tree crowns morphological caracteristics. This study
+is part of a research programm about sustainable agriculture with the aim of
+developping sustainable cultural systems. The question is: Is there a diffrence
+of transmitted light, knowing that there is a diffrence between tree crowns? To
+answer this question, 2 experiments were conducted: measuring tree crowns
+morphological caracteristics and mesuring of incident and transmitted lights.
+The first one has needed a software which was able to compute tree crowns
+morphological caracteristics with 8 pictures. The second one has needed some
+more specific equipment. The acquisition system used was able to compute
+photonic flows in different wavelenghts by measuring the incident and
+transmitted irradiances. The results of those 2 experiments were concatenated in
+order to show that there is a link between tree crowns morphological
+caracteristics and transmitted light. The analysis of the results showed a link
+between the transmission and tree crowns morphology in each species.
 
 \end{abstract}
-
-
-%english abstract
-\begin{english}
-  \begin{abstract}
-    My internship took place in the URP3F (Unit of multidisciplinary research on
-    meadows and forage plants) at the Oak's place but part of experiments were
-    conducted on a field of the Verrines's place. These two places
-    are located within the INRA on the municipality of Lusignan. The conductive
-    idea of those units is to show that diversified systems of
-    cultures are résilients to climate changes. The agro-forester field
-    on which the study was led allows to study this impact on a
-    grazed system. The work was about interaction between trees / light to determine
-    how, knowing that it exists a difference of foliage, a tree filters the
-    light in quantity and in quality. To extract such datas it was necessary to
-    lead 2 experiments. The use of a machine experimental, MARscope, was
-    useful to determine the quantity and the quality of the light which
-    arrives at the ground. It measures the received surface
-    power and handles this information to supply other datas. The second experiment
-    allowed to determine the morphology of tree crowns with eight pictures. The
-    comparison of those sets of datas confirm our hypothesis that
-    the morphology of the foliage has an influence on the transmission of the light.
-    To assert it we were looking for the minimum and the average of $\zeta$.
-    The minimum indicates us the maximum shade and average the
-    density of the foliage. The final graph shows a difference of pronounced transmission
-    between species. As an exemple, \textit{A. cordata} let more light go through them than
-    the others. It's logical beacause volumle of tree crown and LAD are lower.
-  \end{abstract}
-\end{english}
-
-
 
 
 \end{document}
